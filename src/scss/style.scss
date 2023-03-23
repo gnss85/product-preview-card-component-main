@@ -1,0 +1,82 @@
+@font-face {
+  font-family: "Open Sans";
+  src: url("./../assets/fonts/OpenSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./../assets/fonts/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./../assets/fonts/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+:root {
+  --hsl-clr-primary: 257 40% 49%;
+  --hsl-clr-secondary: 300 69% 71%;
+  --hsl-clr-neutral: 0 0% 100%;
+  --hsl-clr-attribution: 228 45% 74%;
+
+  --clr-primary: hsl(var(--hsl-clr-primary));
+  --clr-secondary: hsl(var(--hsl-clr-secondary));
+  --clr-neutral: hsl(var(--hsl-clr-neutral));
+  --clr-attribution: hsl(var(--hsl-clr-attribution));
+
+  --font-family-default: "Poppins", sans-serif;
+  --font-family-accent: "Open Sans", sans-serif;
+
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --fs-100: 0.3rem;
+  --fs-200: 0.5rem;
+  --fs-300: 0.75rem;
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  --fs-600: 1.5rem;
+  --fs-700: 2rem;
+  --fs-800: 3rem;
+
+  --fs-attribution: 0.6875rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.attribution {
+  font-size: var(--fs-attribution);
+  text-align: center;
+}
+.attribution a {
+  color: var(--clr-attribution);
+}
+
+body {
+  font-family: var(--font-family-default);
+  color: var(--clr-neutral);
+  background-color: var(--clr-primary);
+}
