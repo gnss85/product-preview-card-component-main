@@ -1,82 +1,152 @@
-@font-face {
-  font-family: "Open Sans";
-  src: url("./../assets/fonts/OpenSans-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
+@use "./abstracts/" as *;
 
-@font-face {
-  font-family: "Poppins";
-  src: url("./../assets/fonts/Poppins-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
+$primary: hsl(var(--hsl-clr-primary));
 
-@font-face {
-  font-family: "Poppins";
-  src: url("./../assets/fonts/Poppins-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-display: swap;
-}
-
-:root {
-  --hsl-clr-primary: 257 40% 49%;
-  --hsl-clr-secondary: 300 69% 71%;
-  --hsl-clr-neutral: 0 0% 100%;
-  --hsl-clr-attribution: 228 45% 74%;
-
-  --clr-primary: hsl(var(--hsl-clr-primary));
-  --clr-secondary: hsl(var(--hsl-clr-secondary));
-  --clr-neutral: hsl(var(--hsl-clr-neutral));
-  --clr-attribution: hsl(var(--hsl-clr-attribution));
-
-  --font-family-default: "Poppins", sans-serif;
-  --font-family-accent: "Open Sans", sans-serif;
-
-  --fw-regular: 400;
-  --fw-semibold: 600;
-  --fw-bold: 700;
-
-  --fs-100: 0.3rem;
-  --fs-200: 0.5rem;
-  --fs-300: 0.75rem;
-  --fs-400: 1rem;
-  --fs-500: 1.25rem;
-  --fs-600: 1.5rem;
-  --fs-700: 2rem;
-  --fs-800: 3rem;
-
-  --fs-attribution: 0.6875rem;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
+/* ---- FOR DISPLAY ONLY ---- */
 body {
-  margin: 0;
-  padding: 0;
-  font: inherit;
+  display: grid;
+  place-content: center;
+  height: 100vh;
+}
+/* ---- FOR DISPLAY ONLY ---- */
+
+.inner {
+  width: fit-content;
+  padding-inline: 1em;
+  margin-inline: auto;
+
+  @include breakpoint {
+    padding: 0;
+
+    width: min(100%, 70em);
+  }
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
+.product {
+  --border-radius: 1em;
+  --padding-default: 1.5em;
 
-.attribution {
-  font-size: var(--fs-attribution);
-  text-align: center;
-}
-.attribution a {
-  color: var(--clr-attribution);
-}
+  max-width: 24em;
 
-body {
-  font-family: var(--font-family-default);
-  color: var(--clr-neutral);
-  background-color: var(--clr-primary);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-medium);
+
+  background-color: var(--clr-neutral-100);
+  border-radius: var(--border-radius);
+
+  @include breakpoint {
+    --padding-default: 2em;
+
+    grid-template-columns: 1fr 1fr;
+
+    margin-inline: auto;
+
+    max-width: 42em;
+    min-width: 42em;
+  }
+
+  &--image {
+    height: 235px;
+
+    background-image: url("./../assets/images/image-product-mobile.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+
+    @include breakpoint {
+      height: 100%;
+
+      background-image: url("./../assets/images/image-product-desktop.jpg");
+      border-top-right-radius: unset;
+      border-bottom-left-radius: var(--border-radius);
+    }
+  }
+
+  &--description {
+    flex-direction: column;
+    padding: var(--padding-default);
+
+    @include breakpoint {
+      padding: calc(var(--padding-default) + 2px);
+    }
+
+    .description {
+      &--category {
+        font-weight: var(--fw-semi-bold);
+        font-size: var(--fs-300);
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      &--headline {
+        margin-block-start: 0.4em;
+        margin-block-end: 0.5em;
+
+        color: var(--clr-neutral-400);
+        font-size: var(--fs-900);
+        font-weight: var(--fw-bold);
+        font-family: var(--font-family-accent);
+
+        @include breakpoint {
+          margin-block-start: 0.5em;
+          margin-block-end: 0.75em;
+          line-height: 1em;
+        }
+      }
+
+      &--text {
+        line-height: 1.6em;
+      }
+
+      &--prize-wrapper {
+        margin-block: 1.4em;
+        gap: 1.5em;
+
+        @include breakpoint {
+          margin-block: 1.8em;
+        }
+
+        .prize {
+          color: var(--clr-primary);
+          font-family: var(--font-family-accent);
+          font-size: var(--fs-900);
+          font-weight: var(--fw-bold);
+        }
+
+        .rrp {
+          align-self: center;
+          text-decoration: line-through;
+        }
+      }
+
+      &--to-cart {
+        place-content: center;
+
+        padding-block: 1.1em;
+
+        color: var(--clr-neutral-100);
+        background-color: var(--clr-primary);
+        border-width: 0;
+        border-radius: calc(var(--border-radius) / 1.5);
+
+        &:hover,
+        &:focus-visible {
+          background-color: darken(hsl(158 36% 37%), 16%);
+        }
+
+        span {
+          position: relative;
+
+          left: 0em;
+
+          &::before {
+            content: url("./../assets/images/icon-cart.svg");
+            position: absolute;
+            left: -1.7em;
+          }
+        }
+      }
+    }
+  }
 }
